@@ -1,0 +1,54 @@
+{% extends "news/base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<div>
+    <div>
+        <h1>{{ post.title }}</h1>
+    </div>
+    <div>
+        <p class="date">Posted: {{ post.author }} in {{ post.publish }}</p>
+    </div>
+    <div>
+        {% if post.image %}
+            <img src="{{ post.image.url }}">
+        {% endif %}
+    </div>
+    <div>
+        {{ post.body|linebreaks }}
+    </div>
+    <div>
+        <p><a href="{% url "news:update_post" post.id %}">Edit news</a></p>
+        <p><a href="{% url "news:post_share" post.id %}">Share news</a></p>
+    </div>
+    <div>
+        {% with comments.count as total_comments %}
+        <h2>
+            {{ total_comments }} comment{{ total_comments|pluralize }}
+        </h2>
+        {% endwith %}
+        {% for comment in comments %}
+        <div class="comment">
+            <p class="info">
+                {{ comment.name }}
+                {{ comment.created }}
+            </p>
+            {{ comment.body|linebreaks }}
+        </div>
+        {% empty %}
+            <p>No comments yet. Be the first!</p>
+        {% endfor %}
+
+
+        {% if new_comment %}
+        <h2>Comment added</h2>
+        {% else %}
+        <h2>Add a comment</h2>
+        <form action="." method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Add a comment"></p>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

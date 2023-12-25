@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+
+#right {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  background-color: rgb(136, 217, 217);
+  color: #7947ed;
+  border-left: 15px solid rgb(104, 87, 236);
+}
+
+
+body {
+  display: grid;
+  grid-template-columns: 0.8fr auto;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+
+#inf {
+  display: grid;
+  grid-template-rows: 85px auto 25px;
+  padding: 8px;
+  background-color: rgb(136, 217, 217);
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px
+}
+
+.posts .postcard {
+  display: flex;
+  flex-direction: column;
+  background-color: #13b4bd;
+  padding: 8px;
+  border: 3px solid #2e04ad;
+  border-radius: 10px;
+  gap: 8px;
+}
+
+.posts .postcard * {
+  margin: 0;
+  padding: 0;
+}
+
+.posts .postcard h2 a {
+  text-decoration: none;
+}
+
+.posts .postcard p.date {
+  color: #4b26d3;
+  font-size: 14px;
+}
+
+.posts .postcard p:last-child {
+  margin-top: 8px;
+}

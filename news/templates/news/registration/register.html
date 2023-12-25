@@ -1,0 +1,23 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+  <style>
+   h2 {
+    background: rgb(19, 188, 188);
+    color: Black;
+   }
+  </style>
+  <style>
+   .h2 {
+    background: rgb(19, 188, 188);
+    color: Black;
+   }
+  </style>
+
+  <h2>Registration</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="h2">Registration</button>
+  </form>
+{% endblock %}

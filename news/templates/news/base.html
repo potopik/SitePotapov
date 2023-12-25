@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+     <style>
+   .b1 {
+    background: LightSalmon;
+    color: Black;
+    float: right;
+    }
+    </style>
+    <style>
+   .b2 {
+    background: rgb(19, 188, 188);
+    color: Black;
+    border: 1px solid #000;
+    font-size: 18px;
+    }
+    </style>
+    <style>
+   .b3 {
+    background: rgb(94, 180, 219);
+    color: Black;
+    font-size: 25px;
+    }
+    </style>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/blog.css" %}" rel="stylesheet">
+</head>
+<body>
+<div id="inf">
+    {% block content %}
+    {% endblock %}
+</div>
+<div id="right">
+    <h2>Welcome to the news site!</h2>
+     <p class="b2"> Take a break from your business!</p>
+    <p class="b2"> Plunge into the world of exciting news!</p>
+    <p class="b2"> If you have something to tell, <br> then create your first news!</p>
+    <div>
+         <a href="/news/create_post" class="b3">Create a news</a>
+    </div>
+
+    <div>
+        {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+               <button type="submit" class="b1">Log out of your account</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
